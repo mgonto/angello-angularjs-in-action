@@ -29,10 +29,6 @@ config.authentication(app);
 app.use('/api/clients/:userId/stories', require('./features/stories'));
 app.use('/api/clients/:userId/users', require('./features/users'));
 
-// Handle errors
-app.use(function(err, req, res, next){
-  res.send(err.toString());
-});
 
 var port = process.env.PORT || 3000;
 

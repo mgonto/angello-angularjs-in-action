@@ -16,5 +16,13 @@ var StorySchema = new Schema({
     userId: Definitions.string(100, true)
 });
 
+StorySchema.virtual('id').get(function() {
+  return this._id;
+});
+
+StorySchema.set('toJSON', {
+    virtuals: true
+});
+
 StorySchema.plugin(timestamps);
 module.exports = mongoose.model('Story', StorySchema);

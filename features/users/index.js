@@ -36,6 +36,16 @@ app.put('/:id', function(req, res) {
   });
 });
 
+app.delete('/:id', function(req, res) {
+  User.remove({_id: req.params.id, userId: req.user.sub}, function(err, user){
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        res.status(200).send(req.body);
+      }
+  });
+});
+
 app.post('/', function(req, res) {
     var user = new User(_.extend(req.body, {
       userId: req.user.sub

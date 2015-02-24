@@ -11,5 +11,13 @@ var UserSchema = new Schema({
     userId: Definitions.string(100, true)
 });
 
+UserSchema.virtual('id').get(function() {
+  return this._id;
+});
+
+UserSchema.set('toJSON', {
+    virtuals: true
+});
+
 UserSchema.plugin(timestamps);
 module.exports = mongoose.model('User', UserSchema);
